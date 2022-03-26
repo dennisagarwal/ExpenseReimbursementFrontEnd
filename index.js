@@ -18,10 +18,27 @@ loginBtn.addEventListener('click', async()=>{
 
 
   //Get the token and store the token in localStorage
+  //localStorage is accessible from any point in the browser
   let token = res.headers.get('Token');
   localStorage.setItem('jwt',token);
 
-  let user = await res.json();
-  console.log(user);
+  if(res.status === 200) {
+    let user = await res.json();
 
+    if(user.userRole === 'manager'){
+      window.location ='./manager-page.html'
+    }  else if(user.userRole === 'employee'){
+      window.location ='./employee-page.html'
+    }
+
+
+  console.log(user);
+  }else{
+   let errorMsg = await res.text();
+   console.log(errorMsg);
+
+    let errorElement = document.querySelector('#error-msg');
+    errorElement.innerText= errorMsg;
+    errorElement.style.color = "red";
+  }
 });
