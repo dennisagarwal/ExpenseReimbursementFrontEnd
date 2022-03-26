@@ -25,6 +25,8 @@ loginBtn.addEventListener('click', async()=>{
   if(res.status === 200) {
     let user = await res.json();
 
+    localStorage.setItem('user_id',user.id);//keep track of the userId in the local storage
+
     if(user.userRole === 'manager'){
       window.location ='./manager-page.html'
     }  else if(user.userRole === 'employee'){
