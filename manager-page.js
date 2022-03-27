@@ -66,23 +66,23 @@ async function populateReimbursementsTable(){
     td12.innerText = reimbursement.authorRole;
 
     let td13 = document.createElement('td')
-    td13.innerText = (reimbursement.resolverId  ? reimbursement.resolverId : 'Not Resolved');
+    td13.innerText = (reimbursement.resolverId  ? reimbursement.resolverId : 'Not Res.');
     td13.style.color = (reimbursement.resolverId  ? reimbursement.resolverId.color : 'red');
 
     let td14 = document.createElement('td')
-    td14.innerText = (reimbursement.resolverUserName? reimbursement.resolverUserName : 'Not Resolved');
+    td14.innerText = (reimbursement.resolverUserName? reimbursement.resolverUserName : 'Not Res.');
     td14.style.color = (reimbursement.resolverUserName? reimbursement.resolverUserName.color : 'red');
 
     let td15= document.createElement('td')
-    td15.innerText = (reimbursement.resolverFirst? reimbursement.resolverFirst : 'Not Resolved');
+    td15.innerText = (reimbursement.resolverFirst? reimbursement.resolverFirst : 'Not Res.');
     td15.style.color = (reimbursement.resolverFirst? reimbursement.resolverFirst.color : 'red');
 
     let td16 = document.createElement('td')
-    td16.innerText = (reimbursement.resolverLast? reimbursement.resolverLast : 'Not Resolved');
+    td16.innerText = (reimbursement.resolverLast? reimbursement.resolverLast : 'Not Res.');
     td16.style.color = (reimbursement.resolverLast? reimbursement.resolverLast.color : 'red');
 
     let td17 = document.createElement('td')
-    td17.innerText = (reimbursement.resolverEmail? reimbursement.resolverEmail : 'Not Resolved');
+    td17.innerText = (reimbursement.resolverEmail? reimbursement.resolverEmail : 'Not Res.');
     td17.style.color = (reimbursement.resolverEmail? reimbursement.resolverEmail.color : 'red');
 
     let td18 = document.createElement('td')
