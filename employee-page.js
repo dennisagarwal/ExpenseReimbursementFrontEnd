@@ -5,6 +5,7 @@ window.addEventListener('load',(event)=>{
 
 let logoutBtn = document.querySelector('#logout-btn');
 logoutBtn.addEventListener('click',()=>{
+  localStorage.removeItem('user_id');
   localStorage.removeItem('jwt');
 
   window.location = '/index.html';
@@ -74,8 +75,8 @@ async function populateReimbursementsTable(){
     let td3 = document.createElement('td')
     td3.innerText = reimbursement.submitDate;
 
-    let td4 = document.createElement('td')
-    td4.innerText = reimbursement.resolveDate;
+    // let td4 = document.createElement('td')
+    // td4.innerText = reimbursement.resolveDate;
 
     let td5 = document.createElement('td')
     td5.innerText = reimbursement.status;
@@ -109,7 +110,7 @@ async function populateReimbursementsTable(){
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
-    tr.appendChild(td4);
+    // tr.appendChild(td4);
     tr.appendChild(td5);
     tr.appendChild(td6);
     tr.appendChild(td7);

@@ -1,6 +1,7 @@
 let logoutBtn = document.querySelector('#logout-btn');
 
 logoutBtn.addEventListener('click',()=>{
+  localStorage.removeItem('user_id')
   localStorage.removeItem('jwt');
 
   window.location = '/index.html';
@@ -160,8 +161,8 @@ if(!reimbursement.resolverId){// if reimburesement is not being resolved
   //   let status = statusInput.value
   // });
 
-tr.appendChild(statusInput);
-tr.appendChild(statusButton);
+// tr.appendChild(statusInput);
+// tr.appendChild(statusButton);
 
 }
 
