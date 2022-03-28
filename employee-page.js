@@ -1,14 +1,48 @@
-let logoutBtn = document.querySelector('#logout-btn');
+window.addEventListener('load',(event)=>{
+  populateReimbursementsTable();
+});
 
+
+let logoutBtn = document.querySelector('#logout-btn');
 logoutBtn.addEventListener('click',()=>{
   localStorage.removeItem('jwt');
 
   window.location = '/index.html';
 });
 
-window.addEventListener('load',(event)=>{
-  populateReimbursementsTable();
-});
+let employeeSubmit = document.querySelector('#e-submit');
+employeeSubmit.addEventListener('click', async()=>{
+ let reimbursementAmountInput = document.querySelector('#e-amount-input');
+ let reimbursementDateInput = document.querySelector('#e-date-input');
+ let reimbursementDescriptionInput = document.querySelector('#e-description-input');
+ let reimbursementFilesInput = document.querySelector('#e-file-input');
+ let reimbursementStatusInput = document.querySelector('#e-status-input');
+ let reimbursementTypeInput = document.querySelector('#e-type-input');
+
+ let formData = new FormData();
+ formData.append('amount', reimbursementAmountInput.value)
+ formData.append('submitDate', reimbursementDateInput.value)
+ formData.append('description', reimbursementDescriptionInput.value)
+ formData.append('image', reimbursementFilesInput.files[0])
+ formData.append('status', reimbursementStatusInput.value)
+ formData.append('type', reimbursementTypeInput.value)
+
+
+ try{
+  let res = await fetch(`http://localhost:8081/users/${localStorage.getItem('user_id')}/reimbursements`,{
+    method:'POST',
+    body:formData ,
+    headers: {
+ 'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+    }
+  });
+populateReimbursementsTable();
+ }catch (e){
+   console.log(e);
+ }
+
+})
+
 
 async function populateReimbursementsTable(){
   const URL =`http://localhost:8081/user/${localStorage.getItem('user_id')}/reimbursements`;
@@ -23,6 +57,8 @@ async function populateReimbursementsTable(){
   if(res.status === 200) {
     let reimbursements = await res.json();
 
+    let tbody = document.querySelector('#reimbursements-tbl > tbody');
+    tbody.innerHTML= '';
 
     for (let reimbursement of reimbursements){
 
@@ -53,8 +89,6 @@ async function populateReimbursementsTable(){
     let td8 = document.createElement('td')
     td8.innerText = reimbursement.authorUserName;
 
-    // let td9= document.createElement('td')
-    // td9.innerText = reimbursement.authorFirst;
 
     // let td10 = document.createElement('td')
     // td10.innerText = reimbursement.authorLast;
@@ -87,6 +121,11 @@ async function populateReimbursementsTable(){
 
     // let td18 = document.createElement('td')
     // td18.innerText = reimbursement.resolverRole;
+    let td18 = document.createElement('td')
+    let imgElement = document.createElement('img')
+    imgElement.setAttribute('src', `http://localhost:8081/reimbursement/${reimbursement.id}/image`);
+    imgElement.style.height = '100px';
+    td18.appendChild(imgElement);
 
 
     tr.appendChild(td1);
@@ -97,7 +136,7 @@ async function populateReimbursementsTable(){
     tr.appendChild(td6);
     tr.appendChild(td7);
     tr.appendChild(td8);
-    // tr.appendChild(td9);
+
     // tr.appendChild(td10);
     // tr.appendChild(td11);
     // tr.appendChild(td12);
@@ -107,9 +146,9 @@ async function populateReimbursementsTable(){
         // tr.appendChild(td16);
         // tr.appendChild(td17);
         // tr.appendChild(td18);
+        tr.appendChild(td18);
 
-
-        let tbody = document.querySelector('#reimbursements-tbl > tbody');
+        // let tbody = document.querySelector('#reimbursements-tbl > tbody');
         tbody.appendChild(tr);
   }
 

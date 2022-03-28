@@ -1,38 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Employee Profile</title>
-</head>
-<body>
-<h1>Welcome to the Employee Page</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Profile</title>
+  </head>
+  <body>
+    <h1>Welcome to the Employee Page</h1>
+    <div class="employee-grid-container">
+      <div id="employee-reimbursements-table">
+        <h2>Reimbursement Table</h2>
+        <table id="reimbursements-tbl">
+          <thead>
+            <th>Reim. Id</th>
+            <th>Reim. Amount</th>
+            <th>Reim. Sub. Date</th>
+            <th>Reim. Resolved Date</th>
+            <th>Reim. Status</th>
+            <th>Reim. Type</th>
+            <th>Emp. Id</th>
+            <th>Emp. Username</th>
+            <th>Mgr Id</th>
+            <th>Mgr Username</th>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div id="employee-submit-form">
+        <h2>Submit Receipt</h2>
+        <div>
+          <label for="e-amount-input">Reim. Amount</label>
+          <input id="e-amount-input" type="text"></input>
+        </div>
+           <div>
+        <label for="e-date-input">Reim. Submit Date</label>
+        <input id="e-date-input" type="text"></input>
+      </div>
+      <div>
+        <label for="e-description-input">Reim. Description</label>
+        <input id="e-description-input" type="text"></input>
+      </div>
+      <div>
+        <label for="e-file-input">Reim. Receipt Image</label>
+        <input id="e-file-input" type="file"></input>
+      </div>
+      <div>
+        <label for="e-status-input">Reim. Status</label>
+        <input id="e-status-input" type="text"></input>
+      </div>
+      <div>
+        <label for="e-type-input">Reim. type</label>
+        <input id="e-type-input" type="text"></input>
+      </div>
+      <button id="e-submit">Submit</button>
+      </div>
+    </div>
 
-  <table id = "reimbursements-tbl">
-    <thead>
-
-      <th>Reim. Id</th>
-      <th>Reim. Amount</th>
-      <th>Reim. Sub. Date</th>
-      <th>Reim. Resolved Date</th>
-      <th>Reim. Status</th>
-      <th>Reim. Type</th>
-      <th>Emp. Id</th>
-      <th>Emp. Username</th>
-
-      <th>Mgr Id</th>
-      <th>Mgr Username</th>
-
-
-    </thead>
-    <tbody>
-
-
-      </tbody>
-
-  </table>
-<button id="logout-btn">logout</button>
-<script src="employee-page.js"></script>
-</body>
+    <button id="logout-btn">logout</button>
+    <script src="employee-page.js"></script>
+  </body>
 </html>

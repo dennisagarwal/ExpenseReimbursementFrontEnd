@@ -23,6 +23,9 @@ async function populateReimbursementsTable(){
   if(res.status === 200) {
     let reimbursements = await res.json();
 
+    let tbody = document.querySelector('#reimbursements-tbl > tbody');
+    tbody.innerHTML= '';
+
 
     for (let reimbursement of reimbursements){
 
@@ -88,6 +91,12 @@ async function populateReimbursementsTable(){
     let td18 = document.createElement('td')
     td18.innerText = reimbursement.resolverRole;
 
+    let td19 = document.createElement('td')
+    let imgElement = document.createElement('img')
+    imgElement.setAttribute('src', `http://localhost:8081/reimbursement/${reimbursement.id}/image`);
+    imgElement.style.height = '100px';
+    td19.appendChild(imgElement);
+
 
     tr.appendChild(td1);
     tr.appendChild(td2);
@@ -107,9 +116,11 @@ async function populateReimbursementsTable(){
         tr.appendChild(td16);
         tr.appendChild(td17);
         tr.appendChild(td18);
+        tr.appendChild(td19);
 
 
-        let tbody = document.querySelector('#reimbursements-tbl > tbody');
+
+        // let tbody = document.querySelector('#reimbursements-tbl > tbody');
         tbody.appendChild(tr);
   }
 

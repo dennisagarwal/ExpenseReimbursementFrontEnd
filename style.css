@@ -1,9 +1,55 @@
-#login{
-  text-align: center;
+/* css reset */
+* {
+  margin: 0;
+  padding: 0;
+  /* border: #000 1px solid; */
 
 }
 
-.form-input{
+/* general */
+/* .grid-container{
+  display: grid;
+} */
+
+/* Home Page */
+#login {
+  text-align: center;
+}
+
+.form-input {
   margin-top: 20px;
-margin-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+nav {
+  display: flex;
+  background-color: #5c9ead;
+  justify-content: flex-end;
+}
+
+nav a {
+  background-color: #eeeeee;
+  padding: 20px;
+  margin-right: 20px;
+  text-decoration: none;
+  color: #e39774;
+}
+
+
+
+/* employee page */
+.employee-grid-container {
+  display: grid;
+  grid-template-areas: "e-table e-table e-table e-form";
+
+}
+
+.employee-grid-container #employee-reimbursements-table {
+  grid-area: a-table;
+    /* display:flex;
+  justify-content: center; */
+}
+
+.employee-grid-container #employee-submit-form {
+  grid-area: a-form;
 }
