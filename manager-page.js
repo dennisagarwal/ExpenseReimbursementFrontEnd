@@ -26,7 +26,8 @@ async function populateReimbursementsTable(){
     let tbody = document.querySelector('#reimbursements-tbl > tbody');
     tbody.innerHTML= '';
 
-
+//iterate through the reimbursements for the GET /reimbursement request
+//and populate table
     for (let reimbursement of reimbursements){
 
     let tr = document.createElement('tr');
@@ -119,6 +120,50 @@ async function populateReimbursementsTable(){
         tr.appendChild(td19);
 
 
+//populate reimbursement that arent resolved with an inout and resove button
+if(!reimbursement.resolverId){// if reimburesement is not being resolved
+  let statusInput = document.createElement('input');
+  statusInput.setAttribute('type', 'number'); //<input type = "number">
+  statusInput.setAttribute('min', '1');
+  statusInput.setAttribute('max', '3');
+
+
+  //whenever the resolve button is clicked, send a patch request to change the status
+  //of an reimbursement (providing a valid JSON web token from local storage we received
+  //when logging in) and populate the reimbursement table again
+  let statusButton = document.createElement('button');
+  statusButton.innerText = 'Resolve Status';
+
+  statusButton.addEventListener('click', async()=>{
+    let status = statusInput.value;
+
+    try{
+    let res = await fetch(`http://localhost:8081/reimbursements/${reimbursement.id}?status=${status}`,{
+    method: 'PATCH',
+    headers: {
+      'Authorization' : `Bearer ${localStorage.getItem('jwt')}`
+    }
+    });
+
+    if (res.status === 200){
+      populateReimbursementsTable();
+    }
+  }catch(e){
+    console.log(e);
+  }
+  });
+
+  tr.appendChild(statusInput);
+  tr.appendChild(statusButton);
+
+  // statusButton.addEventListener('click', async()=>{
+  //   let status = statusInput.value
+  // });
+
+tr.appendChild(statusInput);
+tr.appendChild(statusButton);
+
+}
 
         // let tbody = document.querySelector('#reimbursements-tbl > tbody');
         tbody.appendChild(tr);

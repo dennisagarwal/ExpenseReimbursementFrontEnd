@@ -90,16 +90,7 @@ async function populateReimbursementsTable(){
     td8.innerText = reimbursement.authorUserName;
 
 
-    // let td10 = document.createElement('td')
-    // td10.innerText = reimbursement.authorLast;
-
-    // let td11 = document.createElement('td')
-    // td11.innerText = reimbursement.authorEmail;
-
-    // let td12 = document.createElement('td')
-    // td12.innerText = reimbursement.authorRole;
-
-    let td13 = document.createElement('td')
+       let td13 = document.createElement('td')
     td13.innerText = (reimbursement.resolverId  ? reimbursement.resolverId : 'Not Resolved');
     td13.style.color = (reimbursement.resolverId  ? reimbursement.resolverId.color : 'red');
 
@@ -107,20 +98,7 @@ async function populateReimbursementsTable(){
     td14.innerText = (reimbursement.resolverUserName? reimbursement.resolverUserName : 'Not Resolved');
     td14.style.color = (reimbursement.resolverUserName? reimbursement.resolverUserName.color : 'red');
 
-    // let td15= document.createElement('td')
-    // td15.innerText = (reimbursement.resolverFirst? reimbursement.resolverFirst : 'Not Resolved');
-    // td15.style.color = (reimbursement.resolverFirst? reimbursement.resolverFirst.color : 'red');
 
-    // let td16 = document.createElement('td')
-    // td16.innerText = (reimbursement.resolverLast? reimbursement.resolverLast : 'Not Resolved');
-    // td16.style.color = (reimbursement.resolverLast? reimbursement.resolverLast.color : 'red');
-
-    // let td17 = document.createElement('td')
-    // td17.innerText = (reimbursement.resolverEmail? reimbursement.resolverEmail : 'Not Resolved');
-    // td17.style.color = (reimbursement.resolverEmail? reimbursement.resolverEmail.color : 'red');
-
-    // let td18 = document.createElement('td')
-    // td18.innerText = reimbursement.resolverRole;
     let td18 = document.createElement('td')
     let imgElement = document.createElement('img')
     imgElement.setAttribute('src', `http://localhost:8081/reimbursement/${reimbursement.id}/image`);
@@ -136,19 +114,12 @@ async function populateReimbursementsTable(){
     tr.appendChild(td6);
     tr.appendChild(td7);
     tr.appendChild(td8);
-
-    // tr.appendChild(td10);
-    // tr.appendChild(td11);
-    // tr.appendChild(td12);
     tr.appendChild(td13);
         tr.appendChild(td14);
-        // tr.appendChild(td15);
-        // tr.appendChild(td16);
-        // tr.appendChild(td17);
-        // tr.appendChild(td18);
         tr.appendChild(td18);
 
-        // let tbody = document.querySelector('#reimbursements-tbl > tbody');
+
+
         tbody.appendChild(tr);
   }
 
