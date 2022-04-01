@@ -11,6 +11,54 @@ window.addEventListener('load',(event)=>{
   populateReimbursementsTable();
 });
 
+// const dropFilter = document.querySelector('#filter');
+// function dropFilterHandler(){ dropFilter.addEventListener('onchange',(event)=>{
+//   console.log(event.value);
+// })}
+// dropFilterHandler();
+
+// const dropDownChangeHandler = (event) => {
+//   // setEnteredYear(event.target.value);
+//   console.log(event.target.value);
+
+// };
+
+
+var searchBox_1 = document.getElementById("searchBox-1");
+searchBox_1.addEventListener('keyup', function(){
+  var keyword = this.value;
+  var reimburesementTable = document.getElementById('reimbursements-tbl')
+  var all_tr = reimburesementTable.getElementsByTagName('tr');
+  for(var i=0; i<all_tr.length;i++){
+var name_column = all_tr[i].getElementsByTagName('td')[4];
+
+if(name_column){
+  var name_value = name_column.innerText || name_column.textContent;
+if(name_value.indexOf(keyword)> -1){
+  all_tr[i].style.display = ' ';
+  // console.log("found")
+  function RefreshPage() {
+    setTimeout(function() {
+
+      // console.log(keyword);
+      if (keyword === "") {
+        window.location.reload();
+      }
+    }, 1000);
+  };
+  RefreshPage();
+// }else if(name_value.indexOf(keyword)== null){window.addEventListener('load',(event)=>{
+//   populateReimbursementsTable();
+// });
+}else{
+  all_tr[i].style.display = 'none';
+  // console.log("not found")
+}}
+  }
+})
+
+
+
 async function populateReimbursementsTable(){
   const URL ='http://localhost:8081/reimbursements'
 
@@ -44,7 +92,16 @@ async function populateReimbursementsTable(){
     td3.innerText = reimbursement.submitDate;
 
     let td4 = document.createElement('td')
-    td4.innerText = reimbursement.resolveDate;
+    // td4.innerText = reimbursement.resolveDate;
+    if((reimbursement.resolveId=null  &&  reimbursement.resolveDate==null)||reimbursement.status==null){
+      td4.innerText==null
+    } else if( reimbursement.resolveDate){
+      td4.innerText = reimbursement.resolveDate
+    }
+    else if( reimbursement.resolveDate==null && reimbursement.status!='pending'){
+      td4.innerText = new Date().getFullYear()+"-"+ (new Date().getMonth()+1) + "-" + new Date().getDate()
+    }
+    // td4.innerText = (reimbursement.resolveId=!null  &&  reimbursement.resolveDate==null?  new Date():reimbursement.resolveDate)
 
     let td5 = document.createElement('td')
     td5.innerText = reimbursement.status;
@@ -122,7 +179,7 @@ async function populateReimbursementsTable(){
 
 
 //populate reimbursement that arent resolved with an inout and resove button
-if(!reimbursement.resolverId){// if reimburesement is not being resolved
+if(!reimbursement.resolverId || reimbursement.status=='pending' || reimbursement.status==null){// if reimburesement is not being resolved
   let statusInput = document.createElement('input');
   statusInput.setAttribute('type', 'number'); //<input type = "number">
   statusInput.setAttribute('min', '1');
