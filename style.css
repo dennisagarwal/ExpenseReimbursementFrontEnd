@@ -116,7 +116,8 @@ h1, h2{
   border: #000000 2px solid;
   border-radius: 5px;
   margin-bottom: 20px;
-
+margin-left:255px;
+padding-left: 10px;
 }
 
 #searchBox-1:hover{
